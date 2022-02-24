@@ -1,13 +1,13 @@
 package com.pruebatecnica.qa.utils.drivers;
 
+import net.serenitybdd.screenplay.Performable;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class OwnRemoteWebDriver {
     private static WebDriver driver;
@@ -17,8 +17,6 @@ public class OwnRemoteWebDriver {
     }
 
     public static OwnRemoteWebDriver hisBrowserWeb() {
-
-
         System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
         ChromeOptions options = new ChromeOptions();
         Map<String,Object> prefs = new HashMap<>();
@@ -38,7 +36,6 @@ public class OwnRemoteWebDriver {
     }
 
     public static void driver(ChromeOptions options) {
-
         DesiredCapabilities capabilities = DesiredCapabilities.chrome();
         capabilities.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS,"chrome");
         capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS,"chrome");
@@ -46,8 +43,15 @@ public class OwnRemoteWebDriver {
     }
 
     public static WebDriver on(String url) {
-
         driver.get(url);
         return driver;
+    }
+
+    public static String validarCambioPestaña()
+    {
+        Set<String> handlesSet = driver.getWindowHandles();
+        List<String> handlesList = new ArrayList<String>(handlesSet);
+        String title = driver.switchTo().window(handlesList.get(1)).getTitle();
+        return title;
     }
 }

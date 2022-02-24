@@ -14,8 +14,10 @@ import com.pruebatecnica.qa.utils.drivers.OwnRemoteWebDriver;
 import com.pruebatecnica.qa.utils.misc.GetDirections;
 
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
+import static net.serenitybdd.screenplay.abilities.BrowseTheWeb.as;
 import static net.serenitybdd.screenplay.abilities.BrowseTheWeb.with;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
+import static net.serenitybdd.screenplay.actors.OnStage.withCurrentActor;
 import static org.junit.Assert.assertEquals;
 
 
@@ -60,5 +62,9 @@ public class IntegrationLogStepDefinitions extends ScenarioActor {
                 IngresarATasasYTarifas.ingresarATasasYTarifas(),
                 DescargarPDF.descargarPDF()
         );
+
+        System.out.println(OwnRemoteWebDriver.validarCambioPestaña());
+
+
     }
 }
